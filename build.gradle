@@ -1,7 +1,22 @@
+apply plugin: 'base'
+apply plugin: 'maven-publish'
+
 group 'fi.jarimatti.karaf'
 version '0.0.1-SNAPSHOT'
 
-apply plugin: 'base'
+publishing {
+    publications {
+        featurePublication(MavenPublication) {
+            artifact source: "$buildDir/karaf/features/features.xml",
+                    classifier: "features",
+                    extension: "xml"
+
+            pom.withXml() {
+                asNode().appendNode('description', 'Akka feature repository for Karaf.')
+            }
+        }
+    }
+}
 
 project.ext {
     scala_version = "2.11.8"
