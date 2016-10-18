@@ -1,5 +1,5 @@
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0"
-          name="akka-features">
+          name="akka-features-${version}">
 
     <feature name="scala" version="${scala_version}">
         <bundle>mvn:org.scala-lang/scala-library/${scala_version}</bundle>
