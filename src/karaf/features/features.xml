@@ -1,0 +1,58 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0"
+          name="akka-features">
+
+    <feature name="scala" version="${scala_version}">
+        <bundle>mvn:org.scala-lang/scala-library/${scala_version}</bundle>
+    </feature>
+
+    <feature name="typesafe-config" version="${typesafe_config_version}">
+        <bundle>mvn:com.typesafe/config/${typesafe_config_version}</bundle>
+    </feature>
+
+    <feature name="akka-actor" version="${akka_version}">
+        <feature>scala</feature>
+        <feature>typesafe-config</feature>
+
+        <bundle>mvn:org.scala-lang.modules/scala-java8-compat_${scala_main_version}/${scala_java8_compat_version}</bundle>
+        <bundle>mvn:com.typesafe.akka/akka-actor_${scala_main_version}/${akka_version}</bundle>
+    </feature>
+
+    <feature name="akka-osgi" version="${akka_version}">
+        <feature>akka-actor</feature>
+
+        <bundle>mvn:com.typesafe.akka/akka-osgi_${scala_main_version}/${akka_version}</bundle>
+    </feature>
+
+    <feature name="ssl-config-akka" version="${ssl_config_version}">
+        <feature>scala</feature>
+        <feature>typesafe-config</feature>
+
+        <bundle>mvn:com.typesafe/ssl-config-akka_${scala_main_version}/${ssl_config_version}</bundle>
+        <bundle>mvn:com.typesafe/ssl-config-core_${scala_main_version}/${ssl_config_version}</bundle>
+        <bundle>mvn:org.scala-lang.modules/scala-parser-combinators_${scala_main_version}/1.0.4/</bundle>
+    </feature>
+
+    <feature name="akka-stream" version="${akka_version}">
+        <feature>akka-actor</feature>
+        <feature>ssl-config-akka</feature>
+
+        <bundle>mvn:com.typesafe.akka/akka-stream_${scala_main_version}/${akka_version}</bundle>
+        <bundle>mvn:org.reactivestreams/reactive-streams/${reactive_streams_version}</bundle>
+    </feature>
+
+    <feature name="akka-parsing" version="${akka_version}">
+        <feature>scala</feature>
+
+        <bundle>mvn:com.typesafe.akka/akka-parsing_${scala_main_version}/${akka_version}</bundle>
+        <bundle>mvn:org.scala-lang/scala-reflect/${scala_version}</bundle>
+    </feature>
+
+    <feature name="akka-http" version="${akka_version}">
+        <feature>scala</feature>
+        <feature>akka-stream</feature>
+        <feature>akka-parsing</feature>
+
+        <bundle>mvn:com.typesafe.akka/akka-http-core_${scala_main_version}/${akka_version}</bundle>
+        <bundle>mvn:com.typesafe.akka/akka-http-experimental_${scala_main_version}/${akka_version}</bundle>
+    </feature>
+</features>
